@@ -9,10 +9,22 @@ function joinGame() {
     }
 }
 
-// Listen for real-time updates
+// Real-time updates from Firestore
 db.collection('gameStatus').doc('current')
   .onSnapshot((doc) => {
       const data = doc.data();
-      gameNameEl.textContent = data.name;
-      currentUrl = data.url;
+      const name = data.name || "nothing"; 
+      gameNameEl.textContent = `Currently playing ${name}`;
+      currentUrl = data.url || '#';
+
+      // Disable join button if offline
+      if(name.toLowerCase() === "nothing") {
+          joinBtn.disabled = true;
+          joinBtn.style.opacity = 0.5;
+          joinBtn.style.cursor = "not-allowed";
+      } else {
+          joinBtn.disabled = false;
+          joinBtn.style.opacity = 1;
+          joinBtn.style.cursor = "pointer";
+      }
   });
