@@ -8,11 +8,25 @@
     <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
     <script src="firebase-config.js"></script>
     <script defer src="script.js"></script>
+    <script defer src="tic-tac-toe.js"></script>
 </head>
 <body>
-    <div class="container">
-        <h1 id="game-name">Currently playing nothing</h1>
-        <button id="join-btn" onclick="joinGame()">Join</button>
+    <div class="container main-container">
+        <div class="game-status">
+            <h1 id="game-name">Currently playing nothing</h1>
+            <button id="join-btn" onclick="joinGame()">Join</button>
+        </div>
+<div id="ttt-modal" class="ttt-modal">
+    <div class="ttt-modal-content">
+        <p id="ttt-message"></p>
+        <button id="ttt-close">OK</button>
+    </div>
+</div>
+        <div class="tic-tac-toe">
+            <h2 style="color:#ff00ff;">Tic-Tac-Toe (Bot)</h2>
+            <div id="board" class="board"></div>
+            <button id="reset-btn">Restart</button>
+        </div>
     </div>
 </body>
 </html>
