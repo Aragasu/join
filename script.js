@@ -15,7 +15,7 @@ db.collection('gameStatus').doc('current')
       const data = doc.data();
       const name = data.name || "nothing"; 
       gameNameEl.textContent = `${name}`;
-      currentUrl = data.url || 'https://aragasu.xyz/nogame';
+      currentUrl = data.url || 'http://aragasu.xyz/nogame';
       }
   });
 
