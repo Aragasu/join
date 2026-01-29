@@ -58,9 +58,11 @@ function typeTitle() {
         typing = true;
         index = titleText.length - charsToDelete;
         setTimeout(typeTitle, 500);
+        return;
+        }
+        setTimeout(typeTitle, 1); // deleting speed (ms)
     }
-}
-
+        }
 // start the loop
 typeTitle();
 </script>
