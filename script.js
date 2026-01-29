@@ -14,17 +14,7 @@ db.collection('gameStatus').doc('current')
   .onSnapshot((doc) => {
       const data = doc.data();
       const name = data.name || "nothing"; 
-      gameNameEl.textContent = `Currently playing ${name}`;
+      gameNameEl.textContent = `${name}`;
       currentUrl = data.url || '#';
-
-      // Disable join button if test
-      if(name.toLowerCase() === "test") {
-          joinBtn.disabled = true;
-          joinBtn.style.opacity = 0.5;
-          joinBtn.style.cursor = "not-allowed";
-      } else {
-          joinBtn.disabled = false;
-          joinBtn.style.opacity = 1;
-          joinBtn.style.cursor = "pointer";
       }
   });
