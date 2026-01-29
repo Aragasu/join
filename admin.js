@@ -23,7 +23,7 @@ saveBtn.addEventListener('click', () => {
 // Go offline
 offlineBtn.addEventListener('click', () => {
     db.collection('gameStatus').doc('current').set({
-        name: "Currently playing nothing",
+        name: "nothing",
         url: "https://aragasu.github.io/join/nogame.html"
     }).then(() => {
         alert('Game is now offline.');
