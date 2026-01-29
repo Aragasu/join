@@ -33,11 +33,12 @@
 const titleText = "‎ JoinMe";
 let current = "";
 let index = 0;
-let typing = true;       // true = typing, false = deleting
-const charsToDelete = 6; // number of characters to delete
+let typing = true; // true = typing, false = deleting
+const deleteCount = 6; // number of characters to delete
 
 function typeTitle() {
     if (typing) {
+        // type one letter at a time
         current += titleText[index];
         index++;
         document.title = current;
@@ -45,24 +46,26 @@ function typeTitle() {
         if (index === titleText.length) {
             // finished typing, wait 2 seconds before deleting
             typing = false;
-            setTimeout(typeTitle, 1500);
+            setTimeout(typeTitle, 2000);
             return;
         }
         setTimeout(typeTitle, 2); // typing speed
     } else {
-        // delete only last 'charsToDelete' characters
-        current = current.slice(0, titleText.length - charsToDelete);
+        // delete only the last deleteCount characters
+        current = current.slice(0, current.length - 1);
         document.title = current;
 
-        // wait 0.5 seconds, then start typing again
-        typing = true;
-        index = titleText.length - charsToDelete;
-        setTimeout(typeTitle, 500);
-        return;
+        if (current.length === titleText.length - deleteCount) {
+            // finished deleting specified number of chars
+            typing = true;
+            index = current.length;
+            setTimeout(typeTitle, 500); // wait before typing again
+            return;
         }
-        setTimeout(typeTitle, 1); // deleting speed (ms)
+        setTimeout(typeTitle, 1); // deleting speed
     }
-        }
+}
+
 // start the loop
 typeTitle();
 </script>
