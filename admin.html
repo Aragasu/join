@@ -23,4 +23,44 @@
         <button id="offline-btn">Go Offline</button>
     </div>
 </body>
+    <script>
+const titleText = "‎ JoinMe Admin Panel";
+let current = "";
+let index = 0;
+let typing = true; // true = typing, false = deleting
+const deleteCount = 18; // number of characters to delete
+
+function typeTitle() {
+    if (typing) {
+        // type one letter at a time
+        current += titleText[index];
+        index++;
+        document.title = current;
+
+        if (index === titleText.length) {
+            // finished typing, wait 2 seconds before deleting
+            typing = false;
+            setTimeout(typeTitle, 2000);
+            return;
+        }
+        setTimeout(typeTitle, 2); // typing speed
+    } else {
+        // delete only the last deleteCount characters
+        current = current.slice(0, current.length - 1);
+        document.title = current;
+
+        if (current.length === titleText.length - deleteCount) {
+            // finished deleting specified number of chars
+            typing = true;
+            index = current.length;
+            setTimeout(typeTitle, 500); // wait before typing again
+            return;
+        }
+        setTimeout(typeTitle, 1); // deleting speed
+    }
+}
+
+// start the loop
+typeTitle();
+                </script>
 </html>
