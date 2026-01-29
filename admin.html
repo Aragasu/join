@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin - Game Status</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+    <script src="firebase-config.js"></script>
+    <script defer src="admin.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Admin Panel</h1>
+        <label for="game-name-input">Game Name:</label>
+        <input type="text" id="game-name-input" placeholder="Enter game name">
+
+        <label for="game-url-input">Game URL:</label>
+        <input type="url" id="game-url-input" placeholder="Enter game URL">
+
+        <button id="save-btn">Save</button>
+    </div>
+</body>
+</html>
