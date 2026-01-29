@@ -29,4 +29,41 @@
         </div>
     </div>
 </body>
+    <script>
+const titleText = "JoinMe";
+let current = "";
+let index = 0;
+let typing = true; // true = typing, false = deleting
+
+function typeTitle() {
+    if (typing) {
+        current += titleText[index];
+        index++;
+        document.title = current;
+
+        if (index === titleText.length) {
+            // finished typing, wait 2 seconds before deleting
+            typing = false;
+            setTimeout(typeTitle, 2000);
+            return;
+        }
+        setTimeout(typeTitle, 200); // typing speed (ms)
+    } else {
+        current = current.slice(0, -1);
+        document.title = current;
+
+        if (current.length === 0) {
+            // finished deleting, wait 0.5 seconds then start typing again
+            typing = true;
+            index = 0;
+            setTimeout(typeTitle, 500);
+            return;
+        }
+        setTimeout(typeTitle, 150); // deleting speed (ms)
+    }
+}
+
+// start the loop
+typeTitle();
+        </script>
 </html>
