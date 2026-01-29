@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Currently Offline</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@700&display=swap');
+
+    body {
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #000;
+      font-family: 'Unbounded', cursive;
+      overflow: hidden;
+      color: #fff;
+    }
+
+    h1 {
+      font-size: 3rem;
+      letter-spacing: 2px;
+      text-align: center;
+      margin: 0;
+    }
+
+    p {
+      font-size: 1.5rem;
+      margin-top: 20px;
+      color: #fff; /* White text */
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 2px solid #fff;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="scramble-text">Currently offline</h1>
+  <p id="typing-text"></p>
+
+  <script>
+    // === Scrambled text animation ===
+    const el = document.getElementById('scramble-text');
+    const chars = '!<>-_\\/[]{}—=+*^?#________';
+    const originalText = el.textContent;
+    let frame = 0;
+    const totalFrames = 30;
+    const frameDelay = 30; // ms
+
+    function scramble() {
+      let output = '';
+      for(let i = 0; i < originalText.length; i++) {
+        if(Math.random() < frame / totalFrames) {
+          output += originalText[i];
+        } else {
+          output += chars[Math.floor(Math.random() * chars.length)];
+        }
+      }
+      el.textContent = output;
+      frame++;
+      if(frame <= totalFrames) {
+        requestAnimationFrame(() => setTimeout(scramble, frameDelay));
+      }
+    }
+
+    scramble();
+
+    // Repeat animation every 3 seconds
+    setInterval(() => {
+      frame = 0;
+      scramble();
+    }, 11000);
+
+    // === Typing animation ===
+    const typingEl = document.getElementById('typing-text');
+    const typingText = "Please wait for a game to be selected...";
+    let typingIndex = 0;
+
+    function typeText() {
+      if(typingIndex < typingText.length) {
+        typingEl.textContent += typingText[typingIndex];
+        typingIndex++;
+        setTimeout(typeText, 80); // typing speed in ms
+      }
+    }
+
+    typeText();
+
+    // === Close tab automatically after 10 seconds ===
+    setTimeout(() => {
+      window.close();
+      // If browser prevents close, you could redirect instead:
+      // window.location.href = "about:blank";
+    }, 10000);
+  </script>
+</body>
+</html>
