@@ -30,10 +30,11 @@
     </div>
 </body>
     <script>
-const titleText = "JoinMe";
+const titleText = "‎ JoinMe";
 let current = "";
 let index = 0;
-let typing = true; // true = typing, false = deleting
+let typing = true;       // true = typing, false = deleting
+const charsToDelete = 6; // number of characters to delete
 
 function typeTitle() {
     if (typing) {
@@ -47,23 +48,20 @@ function typeTitle() {
             setTimeout(typeTitle, 2000);
             return;
         }
-        setTimeout(typeTitle, 2); // typing speed (ms)
+        setTimeout(typeTitle, 2); // typing speed
     } else {
-        current = current.slice(0, -1);
+        // delete only last 'charsToDelete' characters
+        current = current.slice(0, titleText.length - charsToDelete);
         document.title = current;
 
-        if (current.length === 0) {
-            // finished deleting, wait 0.5 seconds then start typing again
-            typing = true;
-            index = 0;
-            setTimeout(typeTitle, 500);
-            return;
-        }
-        setTimeout(typeTitle, 1); // deleting speed (ms)
+        // wait 0.5 seconds, then start typing again
+        typing = true;
+        index = titleText.length - charsToDelete;
+        setTimeout(typeTitle, 500);
     }
 }
 
 // start the loop
 typeTitle();
-        </script>
+</script>
 </html>
