@@ -17,8 +17,8 @@ db.collection('gameStatus').doc('current')
       gameNameEl.textContent = `Currently playing ${name}`;
       currentUrl = data.url || '#';
 
-      // Disable join button if offline
-      if(name.toLowerCase() === "nothing") {
+      // Disable join button if test
+      if(name.toLowerCase() === "test") {
           joinBtn.disabled = true;
           joinBtn.style.opacity = 0.5;
           joinBtn.style.cursor = "not-allowed";
